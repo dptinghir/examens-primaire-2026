@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>تحميل الوثائق</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+:root {
+    --green-dark: #0f6b2c;
+    --green-main: #178d46;
+    --green-light: #19b96b;
+    --blue-main: #0d6efd;
+    --bg-main: #eef7f4;
+    --text-dark: #1f2937;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top, #f8fffb 0%, #eef7f4 45%, #eaf3f0 100%);
+    font-family: Tahoma, Arial, sans-serif;
+    color: var(--text-dark);
+    padding: 22px;
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 780px;
+    margin: auto;
+}
+
+.logo-card {
+    background: white;
+    border-radius: 14px;
+    padding: 12px 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+    margin: 0 auto 32px auto;
+    max-width: 620px;
+    text-align: center;
+}
+
+.logo-card img {
+    max-width: 100%;
+    height: 95px;
+    object-fit: contain;
+}
+
+.main-card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.13);
+}
+
+.header-box {
+    background: linear-gradient(135deg, #0f6b2c 0%, #126f32 45%, #0d5c2b 100%);
+    color: white;
+    padding: 34px 25px 28px 25px;
+    text-align: center;
+}
+
+.header-icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.header-box h1 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 800;
+    line-height: 1.8;
+}
+
+.session-pill {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 6px 24px;
+    border-radius: 50px;
+    background: rgba(255,255,255,0.92);
+    color: var(--green-dark);
+    font-weight: 800;
+    font-size: 16px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+}
+
+.form-area {
+    padding: 30px 26px 26px 26px;
+}
+
+.form-label {
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #111827;
+    display: block;
+}
+
+.form-label .icon {
+    color: var(--green-main);
+    margin-left: 5px;
+}
+
+.form-select,
+.form-control {
+    border-radius: 9px;
+    height: 46px;
+    border: 1px solid #d8dee6;
+    font-size: 15px;
+    background-color: #fff;
+    transition: all 0.2s ease;
+}
+
+.form-select:focus,
+.form-control:focus {
+    border-color: var(--green-main);
+    box-shadow: 0 0 0 0.18rem rgba(25, 135, 84, 0.18);
+}
+
+.form-select {
+    direction: rtl;
+    text-align: right;
+    padding-right: 14px !important;
+    padding-left: 45px !important;
+    background-position: left 12px center !important;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-left: 45px;
+}
+
+.eye-btn {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #666;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.download-btn {
+    width: 100%;
+    border: none;
+    border-radius: 9px;
+    padding: 13px;
+    background: linear-gradient(90deg, #15803d, #19b96b);
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
+    margin-top: 8px;
+    transition: all 0.25s ease;
+}
+
+.download-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(25, 135, 84, 0.30);
+}
+
+.info-note {
+    margin-top: 20px;
+    background: #f4fbf7;
+    border-right: 4px solid var(--green-main);
+    color: #4b5563;
+    padding: 13px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer-note {
+    text-align: center;
+    font-size: 12px;
+    color: #7a7a7a;
+    margin-top: 18px;
+}
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 14px;
+    }
+
+    .logo-card {
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+
+    .logo-card img {
+        height: 78px;
+    }
+
+    .header-box {
+        padding: 28px 18px 23px 18px;
+    }
+
+    .header-box h1 {
+        font-size: 19px;
+        line-height: 1.7;
+    }
+
+    .session-pill {
+        font-size: 15px;
+        padding: 5px 20px;
+    }
+
+    .form-area {
+        padding: 22px 18px;
+    }
+
+    .download-btn {
+        font-size: 17px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+    <div class="logo-card">
+        <img src="logo_transparent.png" alt="Logo">
+    </div>
+
+    <div class="main-card">
+
+        <div class="header-box">
+            <div class="header-icon">📚</div>
+            <h1>تحميل الوثائق الخاصة بامتحان نيل شهادة الدروس الابتدائية</h1>
+            <div class="session-pill">دورة 2026</div>
+        </div>
+
+        <div class="form-area">
+
+            <div class="mb-3">
+                <label class="form-label">
+                    <span class="icon">🏘️</span>
+                    الجماعة
+                </label>
+
+                <select id="communeSelect" class="form-select" onchange="updateCentres()">
+                    <option selected disabled>-- اختر الجماعة --</option>
+                    <option value="أيت  سدرات السهل الغربية">أيت  سدرات السهل الغربية</option>
+<option value="أيت الفرسي">أيت الفرسي</option>
+<option value="أيت سدرات الجبل السفلى">أيت سدرات الجبل السفلى</option>
+<option value="أيت سدرات الجبل العليا">أيت سدرات الجبل العليا</option>
+<option value="أيت سدرات السهل الشرقية">أيت سدرات السهل الشرقية</option>
+<option value="أيت هاني">أيت هاني</option>
+<option value="أيت واسيف">أيت واسيف</option>
+<option value="أيت يول">أيت يول</option>
+<option value="اسول">اسول</option>
+<option value="اغيل نومكون">اغيل نومكون</option>
+<option value="اكنيون">اكنيون</option>
+<option value="النيف">النيف</option>
+<option value="امسمرير">امسمرير</option>
+<option value="اميضر">اميضر</option>
+<option value="بو مالن دادس (البلدية)">بو مالن دادس (البلدية)</option>
+<option value="تغزوت نايت عطى">تغزوت نايت عطى</option>
+<option value="تلمي">تلمي</option>
+<option value="تنغير (البلدية)">تنغير (البلدية)</option>
+<option value="تودغى  السفلى">تودغى  السفلى</option>
+<option value="تودغى العليا">تودغى العليا</option>
+<option value="حصيا">حصيا</option>
+<option value="سوق الخميس دادس">سوق الخميس دادس</option>
+<option value="قلعة مكونة (البلدية)">قلعة مكونة (البلدية)</option>
+<option value="مصيسي">مصيسي</option>
+<option value="واكليم">واكليم</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">
+                    <span class="icon">🏫</span>
+                    مركز الامتحان
+                </label>
+
+                <select id="centreSelect" class="form-select" onchange="showPasswordField()">
+                    <option selected disabled>-- اختر الجماعة أولا --</option>
+                </select>
+            </div>
+
+            <div id="passwordDiv" style="display:none;">
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        <span class="icon">🔐</span>
+                        كلمة المرور
+                    </label>
+
+                    <div class="password-wrapper">
+                        <input type="password"
+                               id="passwordInput"
+                               class="form-control"
+                               placeholder="أدخل كلمة المرور الخاصة بالمركز"
+                               onkeydown="if(event.key === 'Enter') verifyPassword();">
+
+                        <button type="button" class="eye-btn" onclick="togglePassword()">👁️</button>
+                    </div>
+                </div>
+
+                <button class="download-btn" onclick="verifyPassword()">
+                    📥 تحميل الوثائق
+                </button>
+
+            </div>
+
+            <div class="info-note">
+                ℹ️ المرجو اختيار الجماعة ومركز الامتحان، ثم إدخال كلمة المرور الخاصة بالمركز لتحميل الوثائق.
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer-note">
+        المديرية الإقليمية بتنغير
+    </div>
+
+</div>
+
+<script>
+
+const data = {
+  "أيت  سدرات السهل الغربية": [
+    {
+      "centre": "م م البور",
+      "lien": "https://drive.google.com/drive/folders/1n5nsbszXp-laXvy0KY-esIuONOmt8EXG",
+      "mdp": "12848P"
+    },
+    {
+      "centre": "م م القنطرة",
+      "lien": "https://drive.google.com/drive/folders/1nz4_FY5QhdH4fMbGeP84ZxWRHF4G7H7w",
+      "mdp": "12847N"
+    },
+    {
+      "centre": "م م ايت علي احساين",
+      "lien": "https://drive.google.com/drive/folders/1G9KoxRRZzjrisUDR7DX_ShzzFw_pTe28",
+      "mdp": "20771B"
+    },
+    {
+      "centre": "م م زاوية مولاي عبد المالك",
+      "lien": "https://drive.google.com/drive/folders/1Fiq1EvikcmtH59H6zPP834IOnWfo4mP3",
+      "mdp": "12842H"
+    },
+    {
+      "centre": "م.م ايت كمات",
+      "lien": "https://drive.google.com/drive/folders/1BTv5QdirKrN2mDO4-yk006ahLBSexIAx",
+      "mdp": "12843J"
+    },
+    {
+      "centre": "م.م ايت ودار",
+      "lien": "https://drive.google.com/drive/folders/1Gx568vulwSgiI9qk3gfEwG_a43mnGn8J",
+      "mdp": "12844K"
+    }
+  ],
+  "أيت الفرسي": [
+    {
+      "centre": "ف.اشم امزدار",
+      "lien": "https://drive.google.com/drive/folders/1OWqqm2AWH8opgwAMN3OSyo7EdieGAvo5",
+      "mdp": "21504Y"
+    },
+    {
+      "centre": "م.م اكديم نخرطان",
+      "lien": "https://drive.google.com/drive/folders/11Pq_eHtbeyIQQHzbb-LMHEs4ryNlVQfS",
+      "mdp": "12900W"
+    },
+    {
+      "centre": "م.م تورزة",
+      "lien": "https://drive.google.com/drive/folders/1y0TZ-VJDY_-hxnReXKAx8tvEtg_oQBnZ",
+      "mdp": "12897T"
+    },
+    {
+      "centre": "م.م صغرو",
+      "lien": "https://drive.google.com/drive/folders/1h1c07YdkpCBGJrkP-UVHzOWtqfj_4xOf",
+      "mdp": "12895R"
+    }
+  ],
+  "أيت سدرات الجبل السفلى": [
+    {
+      "centre": "م.م امزودار",
+      "lien": "https://drive.google.com/drive/folders/1u36yWgNoZV_P0EhWsbidVMhnSXnUJnk6",
+      "mdp": "12816E"
+    },
+    {
+      "centre": "م.م ايت يدير",
+      "lien": "https://drive.google.com/drive/folders/1bbxVwkYX4AEDsLpnywn1sYiPPnbZnGHi",
+      "mdp": "12815D"
+    }
+  ],
+  "أيت سدرات الجبل العليا": [
+    {
+      "centre": "م.م ايت توخسين",
+      "lien": "https://drive.google.com/drive/folders/1lSa2QA9snimI7JURI_EMxJnwI03i5TLy",
+      "mdp": "12819H"
+    },
+    {
+      "centre": "م.م ايت ملوان",
+      "lien": "https://drive.google.com/drive/folders/1pkroteHXuAmhFN6Cadxq32cR79B4-ed4",
+      "mdp": "12822L"
+    }
+  ],
+  "أيت سدرات السهل الشرقية": [
+    {
+      "centre": "ف ايت توخسين",
+      "lien": "https://drive.google.com/drive/folders/1kOevUdcB6i-xcDtzTKhPNvwR8r4jmHUV",
+      "mdp": "12840F"
+    },
+    {
+      "centre": "ف.ايت بوسعدن",
+      "lien": "https://drive.google.com/drive/folders/1ys0-ntCpLflPGGxjoarX_owPhmn_7pWd",
+      "mdp": "12833Y"
+    },
+    {
+      "centre": "م م ام عياش",
+      "lien": "https://drive.google.com/drive/folders/12ZuRYtcMbb-7cD3PklYqLKgqcTlz3Dq_",
+      "mdp": "12832X"
+    },
+    {
+      "centre": "م م تصويت",
+      "lien": "https://drive.google.com/drive/folders/1ICg1aFDxX7AkmjMkSf7f_u6ZKWZUyqSW",
+      "mdp": "12835A"
+    },
+    {
+      "centre": "م.م  ايت سيدي مولود",
+      "lien": "https://drive.google.com/drive/folders/1_bllJlDgxFad4RetTceHWgr7bV10Btwy",
+      "mdp": "12838D"
+    },
+    {
+      "centre": "م.م تزاخت",
+      "lien": "https://drive.google.com/drive/folders/1g3u26O3YpEdliynuwnHPoQb-TcABuIR_",
+      "mdp": "12834Z"
+    }
+  ],
+  "أيت هاني": [
+    {
+      "centre": "ف.تيدرين",
+      "lien": "https://drive.google.com/drive/folders/1kwdEjcIFJHaG9YFly7TCWB-zU9BRsGO7",
+      "mdp": "09415H"
+    },
+    {
+      "centre": "م.م  زايد أحماد",
+      "lien": "https://drive.google.com/drive/folders/18aM5SBO_L5fHti9mA2-HuUsqmGMZjK7y",
+      "mdp": "09413F"
+    },
+    {
+      "centre": "م.م البيهقي",
+      "lien": "https://drive.google.com/drive/folders/1A1Tm_xbN9Ebu91P7sUNV-08YTsfjCy8t",
+      "mdp": "09420N"
+    },
+    {
+      "centre": "م.م تامتتوشت",
+      "lien": "https://drive.google.com/drive/folders/1eBs4k4TYWFh7xMAwlMr3-SvxLsIX9jZy",
+      "mdp": "09418L"
+    }
+  ],
+  "أيت واسيف": [
+    {
+      "centre": "ف ايت حمو ايحي",
+      "lien": "https://drive.google.com/drive/folders/1Jvsh5FB1RSDIQkLRxLR3b2KC5WY0tvcY",
+      "mdp": "12859B"
+    },
+    {
+      "centre": "ف تغرماتين",
+      "lien": "https://drive.google.com/drive/folders/1YbxVEr_xuxyw_W1YlhXlnyLNvYSMS891",
+      "mdp": "12858A"
+    },
+    {
+      "centre": "ف وارشديق",
+      "lien": "https://drive.google.com/drive/folders/1RPmk0rRyAUfOH3hqOM5oodQ_WNgG4mri",
+      "mdp": "12854W"
+    },
+    {
+      "centre": "م م ايت خيار",
+      "lien": "https://drive.google.com/drive/folders/17diu80aeSuQcuWFcV2YZoHaNQjSvnESP",
+      "mdp": "12853V"
+    },
+    {
+      "centre": "م.م تبرخاشت",
+      "lien": "https://drive.google.com/drive/folders/1NIO2w8gqSCev_PsCKbvxDNSmoCUx2g9y",
+      "mdp": "12851T"
+    },
+    {
+      "centre": "م.م حديدة",
+      "lien": "https://drive.google.com/drive/folders/1HF3eEtuFZ32V7k1zDue1Y-zd_RhpwOlB",
+      "mdp": "12855X"
+    }
+  ],
+  "أيت يول": [
+    {
+      "centre": "م.م توديلت",
+      "lien": "https://drive.google.com/drive/folders/1OsRvXTJ5SMHroAOi1aJjaUVXRIHklMW9",
+      "mdp": "12828T"
+    },
+    {
+      "centre": "م.م جيدا",
+      "lien": "https://drive.google.com/drive/folders/1pFv1CPLE4wrbqGHXH90EJg4BaXTLzUVc",
+      "mdp": "12826R"
+    }
+  ],
+  "اسول": [
+    {
+      "centre": "ف.تانة",
+      "lien": "https://drive.google.com/drive/folders/1DRMAO-JLwiHS3JRoDmPtdSkYVER_5AxE",
+      "mdp": "09438H"
+    },
+    {
+      "centre": "م.م  بادو",
+      "lien": "https://drive.google.com/drive/folders/1anmnJfoDE8WZCA_wuhPSJSBsr2Jn3Svn",
+      "mdp": "09435E"
+    },
+    {
+      "centre": "م.م  سيدي بويعقوب",
+      "lien": "https://drive.google.com/drive/folders/130G1RaNQvo_jOHfKasKtUiM9uK73uxDO",
+      "mdp": "09439J"
+    },
+    {
+      "centre": "م.م اكوراي",
+      "lien": "https://drive.google.com/drive/folders/16EBuRpEDJ5kAtephy9lv9N-d91Zb7lTx",
+      "mdp": "09440K"
+    },
+    {
+      "centre": "م.م اموكر",
+      "lien": "https://drive.google.com/drive/folders/1swIarq_aobiMekmVkomDytLbN_vSMZbe",
+      "mdp": "09441L"
+    }
+  ],
+  "اغيل نومكون": [
+    {
+      "centre": "ف اقا نايت زكري",
+      "lien": "https://drive.google.com/drive/folders/13ZOEzE1-9jc-tJjrcaeNZI1LgizSLbE7",
+      "mdp": "12872R"
+    },
+    {
+      "centre": "ف ايت اومزدار",
+      "lien": "https://drive.google.com/drive/folders/13aE-9R86JKGkWFKVHcTVFQnibs1Knafw",
+      "mdp": "12875U"
+    },
+    {
+      "centre": "ف تغرفت",
+      "lien": "https://drive.google.com/drive/folders/1hyDCrcuhfIOAOexXJo9S13GQ-DU0-7Zo",
+      "mdp": "12878X"
+    },
+    {
+      "centre": "ف تمكلونة",
+      "lien": "https://drive.google.com/drive/folders/1zoPZU_3BxkBQ_IRK08FrZofdawqFiRO8",
+      "mdp": "12866J"
+    },
+    {
+      "centre": "ف.اسمار",
+      "lien": "https://drive.google.com/drive/folders/1sjDljBow8p86eFIFjyiQCBtyApk4eU-m",
+      "mdp": "12867K"
+    },
+    {
+      "centre": "ف.اكرزكا",
+      "lien": "https://drive.google.com/drive/folders/1JDrGevSqhO0IFpGqYRh82LN4gfHvSkQs",
+      "mdp": "12879Y"
+    },
+    {
+      "centre": "ف.تيغانيمين",
+      "lien": "https://drive.google.com/drive/folders/1gL1tmHzsq6J9ziQLVOSNtGm5qf7XUopK",
+      "mdp": "12882B"
+    },
+    {
+      "centre": "م م المدون",
+      "lien": "https://drive.google.com/drive/folders/1YbGwY0Z7mWo9oRUBVsU2vKyCRsK8Vg_u",
+      "mdp": "12873S"
+    },
+    {
+      "centre": "م م امجكاك",
+      "lien": "https://drive.google.com/drive/folders/1L-T5P832DvovDtCCNUP5Zv3euP7l1ctm",
+      "mdp": "12874T"
+    },
+    {
+      "centre": "م م اوزيغمت",
+      "lien": "https://drive.google.com/drive/folders/1DXTrUqAiQrlpvT7nNJQA7UUqul4nTLD3",
+      "mdp": "12877W"
+    },
+    {
+      "centre": "م.م اغرم اقديم",
+      "lien": "https://drive.google.com/drive/folders/18ZrH387Hl1tZaUBoxTmgxZeo70oA0jOu",
+      "mdp": "12864G"
+    },
+    {
+      "centre": "م.م اكوتي",
+      "lien": "https://drive.google.com/drive/folders/19WuZ7MD9GPBcCnR-icIaOPaefqxL0hUC",
+      "mdp": "12865H"
+    },
+    {
+      "centre": "م.م ايت تومرت",
+      "lien": "https://drive.google.com/drive/folders/1PBoZbyshgscic3of4mdp_UdOPjkPWKEq",
+      "mdp": "12871P"
+    },
+    {
+      "centre": "م.م ايت زكري",
+      "lien": "https://drive.google.com/drive/folders/1KlfUwG4iX-NznclQlpJUlOy8hvpWHlLb",
+      "mdp": "12868L"
+    },
+    {
+      "centre": "م.م بوتغرار",
+      "lien": "https://drive.google.com/drive/folders/11BUhW08fxIA_i3Ivcx40fvZ2f1-oPpDI",
+      "mdp": "12862E"
+    }
+  ],
+  "اكنيون": [
+    {
+      "centre": "م م تولوالت",
+      "lien": "https://drive.google.com/drive/folders/1jbBuUPmLgco68k9PZ2Pat4f4S9FGQszP",
+      "mdp": "12906C"
+    },
+    {
+      "centre": "م.م  اكيس امزدار",
+      "lien": "https://drive.google.com/drive/folders/1p78lD6dI8_29C5mf64_8aEiv0xZtMrdK",
+      "mdp": "12927A"
+    },
+    {
+      "centre": "م.م إغنسلن",
+      "lien": "https://drive.google.com/drive/folders/1I_eWOeRUjY6xW3QGTAN5SJBvpxUqN19r",
+      "mdp": "12918R"
+    },
+    {
+      "centre": "م.م اغرم امزدار",
+      "lien": "https://drive.google.com/drive/folders/14rizPRDKFXoCPNM5KHENBPzeDjUuYgz1",
+      "mdp": "12925Y"
+    },
+    {
+      "centre": "م.م امجدادار",
+      "lien": "https://drive.google.com/drive/folders/1DcPDw3Z6hSaZ15B_vHafqEiXVarX147o",
+      "mdp": "12920T"
+    },
+    {
+      "centre": "م.م بوكافر اكنيون",
+      "lien": "https://drive.google.com/drive/folders/1L2yO6s4HEs0kAFco-rrRwxl8RZkVjNh2",
+      "mdp": "12903Z"
+    },
+    {
+      "centre": "م.م تزلافت",
+      "lien": "https://drive.google.com/drive/folders/1sAEzosmamvJvn0pZeSSjwkqEUL5SRJR9",
+      "mdp": "12929C"
+    },
+    {
+      "centre": "م.م تغصى",
+      "lien": "https://drive.google.com/drive/folders/1lemTxx9iAOaOYtDUK9Elg-GsxzmlceeQ",
+      "mdp": "12919S"
+    },
+    {
+      "centre": "م.م تكموت",
+      "lien": "https://drive.google.com/drive/folders/1UGwPqQs9W974egdtqVSdhtcuntpNEyO6",
+      "mdp": "12905B"
+    },
+    {
+      "centre": "م.م تنوركان",
+      "lien": "https://drive.google.com/drive/folders/1FhPtC0I7_qkKyA6NbiBvg-CalHIYVgxo",
+      "mdp": "12911H"
+    },
+    {
+      "centre": "م.م زاكر",
+      "lien": "https://drive.google.com/drive/folders/1RfBzeZ1mlXj2TGSrt5XEJOBGE3uSARJO",
+      "mdp": "12917P"
+    }
+  ],
+  "النيف": [
+    {
+      "centre": "ف.تيزي",
+      "lien": "https://drive.google.com/drive/folders/1i1-ooM39BSaYbT9WmrkXBBftqRc_mq9b",
+      "mdp": "09493T"
+    },
+    {
+      "centre": "م م. ايت إعزى",
+      "lien": "https://drive.google.com/drive/folders/1ho3uD-llCYjJx274GXvUAI3G0qtnJQB8",
+      "mdp": "09495V"
+    },
+    {
+      "centre": "م.صغرو 1",
+      "lien": "https://drive.google.com/drive/folders/1t73yv7FqjOdbmIbx-7Mrgu2nq_CwBd9n",
+      "mdp": "09473W"
+    },
+    {
+      "centre": "م.م أسيمور",
+      "lien": "https://drive.google.com/drive/folders/1Q9PLXfqyd8KRGAEQcJAahpRjyEedWmaj",
+      "mdp": "09499Z"
+    },
+    {
+      "centre": "م.م أمسعد",
+      "lien": "https://drive.google.com/drive/folders/1uveodlv7bJ5SR6-K4awZWFBvWPskdl90",
+      "mdp": "09492S"
+    },
+    {
+      "centre": "م.م الحسن الداخل",
+      "lien": "https://drive.google.com/drive/folders/1s-R2EoQw8QQsYfFZRWQrobTA_k095DOc",
+      "mdp": "09484H"
+    },
+    {
+      "centre": "م.م الرك",
+      "lien": "https://drive.google.com/drive/folders/16gqty0lKr7gb3zr0f9vaW_ZPCrchIqpz",
+      "mdp": "09488M"
+    },
+    {
+      "centre": "م.م ايت زكان",
+      "lien": "https://drive.google.com/drive/folders/1UsnRP7U_nu8mG-m8g6kkBybxxhIy31Qv",
+      "mdp": "09480D"
+    },
+    {
+      "centre": "م.م تعمارت",
+      "lien": "https://drive.google.com/drive/folders/1m2GO0ZDuYsKOmBFE5Rh_46oU72b4h_3M",
+      "mdp": "09489N"
+    },
+    {
+      "centre": "م.م توغزا",
+      "lien": "https://drive.google.com/drive/folders/1wS1cj-WNY0i9-504crY91g4ZZ4Opg7IY",
+      "mdp": "09486K"
+    },
+    {
+      "centre": "م.م صغرو 2",
+      "lien": "https://drive.google.com/drive/folders/15he4dbyb2yzKUS0uWkRaroOO46p4pNyI",
+      "mdp": "09476Z"
+    },
+    {
+      "centre": "م.م ميماريغن",
+      "lien": "https://drive.google.com/drive/folders/1MgqWs10sgnZMBzHPXI6NZ-aG_IfjBNl-",
+      "mdp": "09502C"
+    },
+    {
+      "centre": "مجموعة مدارس الواحة",
+      "lien": "https://drive.google.com/drive/folders/1R107dvvj0uqAaoQpq6Hynk2n_ZQul7vW",
+      "mdp": "09475Y"
+    }
+  ],
+  "امسمرير": [
+    {
+      "centre": "م م اسكيس",
+      "lien": "https://drive.google.com/drive/folders/1KfSkNWj4lRRk_Kv79vhVwiBCIVxXGJqm",
+      "mdp": "12934H"
+    },
+    {
+      "centre": "م م امسمرير",
+      "lien": "https://drive.google.com/drive/folders/18pTrZfrvAdYnnKH4EMXSBUoGTJcajHqV",
+      "mdp": "12931E"
+    },
+    {
+      "centre": "م م تعدادات",
+      "lien": "https://drive.google.com/drive/folders/1oXWNywjCCJ-qGlIRqPGLca2kCuISyxWm",
+      "mdp": "12933G"
+    }
+  ],
+  "اميضر": [
+    {
+      "centre": "م.م اميضر",
+      "lien": "https://drive.google.com/drive/folders/1plYLpawVQqAOUp9hVUE77yuuDgpajXjf",
+      "mdp": "12949Z"
+    },
+    {
+      "centre": "م.م انو نزم",
+      "lien": "https://drive.google.com/drive/folders/1ITtSTRHTINSGUBgZldDo9ywO1Dx5WR4l",
+      "mdp": "12950A"
+    }
+  ],
+  "بو مالن دادس (البلدية)": [
+    {
+      "centre": "م.بومالن",
+      "lien": "https://drive.google.com/drive/folders/1htp57A2Cm3MFU_lOeP5YtXIUxI6Ziyil",
+      "mdp": "12802P"
+    },
+    {
+      "centre": "م.عمر بن الخطاب",
+      "lien": "https://drive.google.com/drive/folders/1hMzcCUnA6gwwG_JUWq9PVXFJ9x-f1bqq",
+      "mdp": "12781S"
+    },
+    {
+      "centre": "م.م  ايت بولال",
+      "lien": "https://drive.google.com/drive/folders/1pl-Te1aDGlVMtmCYsuxue6otrPHBLqKh",
+      "mdp": "12800M"
+    },
+    {
+      "centre": "م.م ايت أونير",
+      "lien": "https://drive.google.com/drive/folders/1PrQSLem3kA_gXjLZ6dePU8nM4gZlYUbP",
+      "mdp": "12803R"
+    },
+    {
+      "centre": "م.م تنميول",
+      "lien": "https://drive.google.com/drive/folders/1-gCcGhjzuPSp5y55AEFBIhjLss_bDLPG",
+      "mdp": "12801N"
+    }
+  ],
+  "تغزوت نايت عطى": [
+    {
+      "centre": "ف.اكديم",
+      "lien": "https://drive.google.com/drive/folders/1HKkwKMbyfQV8hs1T_kY7x0d_i3XK57BL",
+      "mdp": "12965S"
+    },
+    {
+      "centre": "م ايت عيسى",
+      "lien": "https://drive.google.com/drive/folders/1gl4F5SFmjDLN-xR8tMQdu08K6Qn0a-EU",
+      "mdp": "12786X"
+    },
+    {
+      "centre": "م.م تاغيا",
+      "lien": "https://drive.google.com/drive/folders/1v7yNC3Hu-mmX8ka6E1RbGu0JY94dN-ar",
+      "mdp": "12966T"
+    },
+    {
+      "centre": "م.م تبسباست",
+      "lien": "https://drive.google.com/drive/folders/1jDJjzKLZDBSv4y8jUMHy2APUVaNSOXi3",
+      "mdp": "12960L"
+    },
+    {
+      "centre": "م.م تدفالت",
+      "lien": "https://drive.google.com/drive/folders/1FM6JG6LtZeS0ChOR35XLy4AXmUUmrCdq",
+      "mdp": "12963P"
+    },
+    {
+      "centre": "م.م تغزوت",
+      "lien": "https://drive.google.com/drive/folders/1i0M3MPYT2_mInGpDssNbluoyEunwpo6F",
+      "mdp": "12785W"
+    },
+    {
+      "centre": "م.م غليل امزدار",
+      "lien": "https://drive.google.com/drive/folders/1jRaiDvgYLM3QrLSb8kqGc1Ku38xXgfHu",
+      "mdp": "12961M"
+    }
+  ],
+  "تلمي": [
+    {
+      "centre": "ف.تلمي",
+      "lien": "https://drive.google.com/drive/folders/17r14SKPMTAXh8IHaxl5KxO-5x-VXqHCS",
+      "mdp": "12948Y"
+    },
+    {
+      "centre": "م.م ايت علي ويكو",
+      "lien": "https://drive.google.com/drive/folders/1f5Oj6ckBRJ4y9FGerU5aVjUc3VDQTDlJ",
+      "mdp": "12945V"
+    },
+    {
+      "centre": "م.م ايت مرغاد",
+      "lien": "https://drive.google.com/drive/folders/1_VYEEPLlZYWQzbw-cfnBNfb9N_ueu7dd",
+      "mdp": "12938M"
+    },
+    {
+      "centre": "م.م ايت واعتيق",
+      "lien": "https://drive.google.com/drive/folders/1AbLp-lQ0YsgCdj19qdwhu1nh8YmQO4CJ",
+      "mdp": "12944U"
+    },
+    {
+      "centre": "م.م بودجام",
+      "lien": "https://drive.google.com/drive/folders/1loJNLlvAZoI1AudMfCD8mxXtKDZ9hDas",
+      "mdp": "12939N"
+    }
+  ],
+  "تنغير (البلدية)": [
+    {
+      "centre": "م م تجماصت",
+      "lien": "https://drive.google.com/drive/folders/13qwQfOgIUOGR52Y9hZNVv_eeivHrSOFg",
+      "mdp": "12775K"
+    },
+    {
+      "centre": "م.ابن سينا",
+      "lien": "https://drive.google.com/drive/folders/1hP4fxjJu0DkH71RQpk4bGX2lyd_gJNzy",
+      "mdp": "25886L"
+    },
+    {
+      "centre": "م.افانور",
+      "lien": "https://drive.google.com/drive/folders/1bhAyhDnWGY1JvLbkKjNS3-T-TO0hKv8e",
+      "mdp": "12780R"
+    },
+    {
+      "centre": "م.المختار السوسي",
+      "lien": "https://drive.google.com/drive/folders/1v8vt7Ns8nM07_eNe_7TUFjKRbRYkPu0q",
+      "mdp": "12776L"
+    },
+    {
+      "centre": "م.المضايق",
+      "lien": "https://drive.google.com/drive/folders/1x3SIFqm3oBV1GLBN--OjxP9X0-AIpwuO",
+      "mdp": "12777M"
+    },
+    {
+      "centre": "م.الوفاء",
+      "lien": "https://drive.google.com/drive/folders/1fbn8l2LT1qtM4Ii-WTy60fy1qfSqx64O",
+      "mdp": "24663G"
+    },
+    {
+      "centre": "م.ايت اجنا",
+      "lien": "https://drive.google.com/drive/folders/1J7l0NyAKP8Cl34AmKQuYuZWJYIJ4vzuw",
+      "mdp": "12779P"
+    },
+    {
+      "centre": "م.توريرت نمزيلن",
+      "lien": "https://drive.google.com/drive/folders/1pcfBXIRNON5PTbmH6N2UHJEzty21yxWT",
+      "mdp": "12795G"
+    },
+    {
+      "centre": "م.تيكوتار",
+      "lien": "https://drive.google.com/drive/folders/12EDK4NWC6ENsn3dN_rqAqaUTKLEMor-_",
+      "mdp": "12794F"
+    },
+    {
+      "centre": "م.سيدي مسكور",
+      "lien": "https://drive.google.com/drive/folders/1LxE8pXOfrrxaKlpKyHQKBEkNdsLiJWvS",
+      "mdp": "12778N"
+    },
+    {
+      "centre": "م.م حلول",
+      "lien": "https://drive.google.com/drive/folders/15Pi9CWz035y3bVNBxR8MFbwb5solGPPe",
+      "mdp": "12796H"
+    },
+    {
+      "centre": "مدرسة المجد",
+      "lien": "https://drive.google.com/drive/folders/1YZzaxhPrnx_aStHII0tsWLPdLwpuBqC_",
+      "mdp": "28813T"
+    }
+  ],
+  "تودغى  السفلى": [
+    {
+      "centre": "ف.اسفولا",
+      "lien": "https://drive.google.com/drive/folders/1WpokqHNDZzDKWMH6Gn1wiRZtK_RdXEkB",
+      "mdp": "20298M"
+    },
+    {
+      "centre": "ف.ايت محمد قصر",
+      "lien": "https://drive.google.com/drive/folders/12T-i0xvHs1_ydeBuO23_SvflRVZq8jKB",
+      "mdp": "12973A"
+    },
+    {
+      "centre": "م.م الحاج عمرو",
+      "lien": "https://drive.google.com/drive/folders/1NWkZiJ9HasTXLMKQJB6g0e8PGl5X9-Sb",
+      "mdp": "12976D"
+    },
+    {
+      "centre": "م.م الحارة نكرامن",
+      "lien": "https://drive.google.com/drive/folders/1oSLm-h2wl9jNcNOQC4ne4QiOttOD4vyY",
+      "mdp": "12979G"
+    },
+    {
+      "centre": "م.م ايت ايعلا",
+      "lien": "https://drive.google.com/drive/folders/1uxa5CMBwAN-40GK-_odhqkoOgZnhkXGc",
+      "mdp": "12974B"
+    }
+  ],
+  "تودغى العليا": [
+    {
+      "centre": "م.م إحجامين",
+      "lien": "https://drive.google.com/drive/folders/1Cg8u80UsxBm6ekARnQ__jn3uNT8x0fsi",
+      "mdp": "12971Y"
+    },
+    {
+      "centre": "م.م اغبالو",
+      "lien": "https://drive.google.com/drive/folders/1u66u2n8uAJ1o7xApGQxV9xJWuI0AwLwH",
+      "mdp": "12968V"
+    }
+  ],
+  "حصيا": [
+    {
+      "centre": "المدرسة الجماعاتية حصيا",
+      "lien": "https://drive.google.com/drive/folders/1k4nwqkQOmwLEcwc-Rpuj_18URzvjF8ez",
+      "mdp": "09459F"
+    },
+    {
+      "centre": "م م خينك",
+      "lien": "https://drive.google.com/drive/folders/1TF_Wm5jz6B5ekkKocr1kKPB6cwQhNfjK",
+      "mdp": "09462J"
+    },
+    {
+      "centre": "م.م ايت عطى",
+      "lien": "https://drive.google.com/drive/folders/1JjpgYZ2KM_aXxWpRG7qbse7-rV29ovSc",
+      "mdp": "09465M"
+    },
+    {
+      "centre": "م.م بونحاس",
+      "lien": "https://drive.google.com/drive/folders/16IXL_8ZlvnaGSZiButWdXENm26Mp82Pg",
+      "mdp": "09468R"
+    },
+    {
+      "centre": "م.م تيكشة",
+      "lien": "https://drive.google.com/drive/folders/1lEVxNIh5OcXd9M7XU_uKm5PfYYu1jmZX",
+      "mdp": "09471U"
+    },
+    {
+      "centre": "م.م طارق بن زياد",
+      "lien": "https://drive.google.com/drive/folders/1P1-OSQL1V2_zhpei6bwcXspa6cd9LvE-",
+      "mdp": "09461H"
+    },
+    {
+      "centre": "م.م عسو بسلام",
+      "lien": "https://drive.google.com/drive/folders/1XsH6CZg-xaLx0q3t6-WpwuQJuAXvXF7Y",
+      "mdp": "22627U"
+    }
+  ],
+  "سوق الخميس دادس": [
+    {
+      "centre": "م.الخميس",
+      "lien": "https://drive.google.com/drive/folders/1jz5x0hW2N-PzQuji7OzaQxVdv7dhdQ0N",
+      "mdp": "12887G"
+    },
+    {
+      "centre": "م.م الكومت",
+      "lien": "https://drive.google.com/drive/folders/15236AXqEhzu_XLEbaNKblBwZqSqhPqYX",
+      "mdp": "12883C"
+    },
+    {
+      "centre": "م.م ايت اوزين",
+      "lien": "https://drive.google.com/drive/folders/17ZquYMCHrc9LDxljs4JAWKiDJLHpA1Xn",
+      "mdp": "12884D"
+    },
+    {
+      "centre": "م.م ايت حمو",
+      "lien": "https://drive.google.com/drive/folders/154FyCR1o_UuzO05MVJwHX_AelgGH1Tba",
+      "mdp": "12888H"
+    },
+    {
+      "centre": "م.م زاوية البئر",
+      "lien": "https://drive.google.com/drive/folders/1_1JEQJsT3I9XsX4FjYCxaMtBiDFYB-q1",
+      "mdp": "12890K"
+    }
+  ],
+  "قلعة مكونة (البلدية)": [
+    {
+      "centre": "ف اميرنة",
+      "lien": "https://drive.google.com/drive/folders/1ZtsHvQ-jJbsdvCCLgjnlrRFUXfjNW8eP",
+      "mdp": "12809X"
+    },
+    {
+      "centre": "ف ايت امغار",
+      "lien": "https://drive.google.com/drive/folders/1kxnAM1hTiWdnAmBbjeA-qHWYnNUIXlUx",
+      "mdp": "20283W"
+    },
+    {
+      "centre": "ف. زاوية اكرض",
+      "lien": "https://drive.google.com/drive/folders/1LFFdAKiVp2zo_egCyRDTbTKR3xYt01YX",
+      "mdp": "12810Y"
+    },
+    {
+      "centre": "م م فاطمة الفهرية",
+      "lien": "https://drive.google.com/drive/folders/1H-cVPbCXP_i2rjM6_yuUsb4WLsATMbyY",
+      "mdp": "29322W"
+    },
+    {
+      "centre": "م.م الحارة",
+      "lien": "https://drive.google.com/drive/folders/15uU5ye4w4NfP9X3llwCF0bDaFbELh8AH",
+      "mdp": "12808W"
+    },
+    {
+      "centre": "مدرسة الأمل",
+      "lien": "https://drive.google.com/drive/folders/15MfejmL21VWybULfAnLp80ZwJMrR8FBn",
+      "mdp": "24946P"
+    },
+    {
+      "centre": "مدرسة ايت بعمران",
+      "lien": "https://drive.google.com/drive/folders/1jvRyvcTeaLPTVE2WzmN8VgWdJ61X0IgP",
+      "mdp": "12805T"
+    },
+    {
+      "centre": "مدرسة قلعة مكونة",
+      "lien": "https://drive.google.com/drive/folders/1n5ocsxJMZc1nZ9Vs0qGBPwRvXe78O1gk",
+      "mdp": "12782T"
+    }
+  ],
+  "مصيسي": [
+    {
+      "centre": "القائد الرامي",
+      "lien": "https://drive.google.com/drive/folders/1TBtMMFOYw0KqQHJkXZPClDLgm7Fp9HSE",
+      "mdp": "09449V"
+    },
+    {
+      "centre": "ف.مصيصي",
+      "lien": "https://drive.google.com/drive/folders/17QeBA_rO_jg5jL1WTWEAcxa53L3DvMV2",
+      "mdp": "09444P"
+    },
+    {
+      "centre": "م م بوكافر",
+      "lien": "https://drive.google.com/drive/folders/1F53Sv-xJjIVtsUJVvjsnkAJ-0c2ixrFV",
+      "mdp": "09453Z"
+    },
+    {
+      "centre": "م.م ازاك",
+      "lien": "https://drive.google.com/drive/folders/1yWq88m9ou3hf37b7fAqsktRFS8J8c6mp",
+      "mdp": "09446S"
+    },
+    {
+      "centre": "م.م بواضيل",
+      "lien": "https://drive.google.com/drive/folders/16MroWT2HhUs7Qyli03kvBpg3e5xr_MTW",
+      "mdp": "09448U"
+    },
+    {
+      "centre": "مجموعة مدارس النصر",
+      "lien": "https://drive.google.com/drive/folders/1XDGMs5sL6iYAplk0rVYOY1TLtB8r80ov",
+      "mdp": "09454A"
+    }
+  ],
+  "واكليم": [
+    {
+      "centre": "ف.اكوني",
+      "lien": "https://drive.google.com/drive/folders/15G99Bi7ComgEJ5qvveKcZFKZt78qrYhW",
+      "mdp": "12959K"
+    },
+    {
+      "centre": "م.م ارك سيدي علي ابورك",
+      "lien": "https://drive.google.com/drive/folders/1E5p1wCvTHZ4h97KZ5f5pAbw4yCCtNX9I",
+      "mdp": "12958J"
+    },
+    {
+      "centre": "م.م امانقيدار",
+      "lien": "https://drive.google.com/drive/folders/1VKZk3k8kDyOoXd0iDwNwptBnWLetN_Vu",
+      "mdp": "12954E"
+    },
+    {
+      "centre": "م.م تمضروين",
+      "lien": "https://drive.google.com/drive/folders/1wLjmTVgpNduOdwPHZY9Z0h5TwQ9ZyIgO",
+      "mdp": "12957H"
+    },
+    {
+      "centre": "م.م واكليم",
+      "lien": "https://drive.google.com/drive/folders/1ZaFir9HudZL5yoUsLw6qYeEMBSOiIVYr",
+      "mdp": "12953D"
+    }
+  ]
+};
+
+const communeSelect = document.getElementById("communeSelect");
+const centreSelect = document.getElementById("centreSelect");
+const passwordDiv = document.getElementById("passwordDiv");
+const passwordInput = document.getElementById("passwordInput");
+
+let currentCentres = [];
+
+function updateCentres() {
+
+    const commune = communeSelect.value;
+    currentCentres = data[commune] || [];
+
+    centreSelect.innerHTML =
+        '<option selected disabled>-- اختر مركز الامتحان --</option>';
+
+    currentCentres.forEach(obj => {
+        const option = document.createElement("option");
+        option.value = obj.centre;
+        option.textContent = obj.centre;
+        centreSelect.appendChild(option);
+    });
+
+    passwordDiv.style.display = "none";
+    passwordInput.value = "";
+}
+
+function showPasswordField() {
+
+    passwordDiv.style.display = "block";
+    passwordInput.value = "";
+
+    setTimeout(() => {
+        passwordInput.focus();
+    }, 150);
+}
+
+function verifyPassword() {
+
+    const centreName = centreSelect.value;
+    const password = passwordInput.value.trim();
+
+    const centreData = currentCentres.find(c => c.centre === centreName);
+
+    if (!centreData) {
+        alert("يرجى اختيار مركز الامتحان");
+        return;
+    }
+
+    if (password === "") {
+        alert("يرجى إدخال كلمة المرور");
+        return;
+    }
+
+    if (password === centreData.mdp) {
+        window.open(centreData.lien, "_blank");
+    } else {
+        alert("❌ كلمة المرور غير صحيحة");
+        passwordInput.value = "";
+        passwordInput.focus();
+    }
+}
+
+function togglePassword() {
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+    } else {
+        passwordInput.type = "password";
+    }
+}
+
+</script>
+
+</body>
+</html>
